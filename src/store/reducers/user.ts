@@ -4,14 +4,14 @@ import checkLogin from '../../middlewares/checkLogin';
 interface UserState {
   logged: boolean;
   logins: { email: string; password: string };
-  pseudo: string;
+  pseudo: null | string;
   error: null | string;
   token: null | string;
 }
 export const initialState: UserState = {
   logged: false,
   logins: { email: '', password: '' },
-  pseudo: '',
+  pseudo: null,
   error: null,
   token: null,
 };
@@ -22,7 +22,7 @@ export const actionChangeLogin = createAction<{
 }>('user/CHANGE_LOGIN');
 
 export const actionLogOut = createAction('user/LOGOUT');
-export const actionLogIn = createAction('user/LOGIN');
+export const actionLogIn = createAction<string>('user/LOGIN');
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
@@ -35,7 +35,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.error = null;
       state.token = action.payload.token;
     })
-    .addCase(checkLogin.rejected, (state, action) => {
+    .addCase(checkLogin.rejected, (state) => {
       state.error = 'Erreur de connexion...';
     })
     .addCase(actionLogIn, (state, action) => {
