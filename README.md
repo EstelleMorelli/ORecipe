@@ -10,4 +10,4 @@ To check authentification system, you can use :
 - dave@mail.io / d
 
 
-Web application visible on : https://o-recipes-2i66pc5e9-estellemorellis-projects.vercel.app/
+Web application visible on : https://o-recipes-i6k3p52rm-estellemorellis-projects.vercel.app/
